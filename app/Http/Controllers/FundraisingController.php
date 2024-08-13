@@ -23,6 +23,11 @@ class FundraisingController extends Controller
         //
     }
 
+    public function activate_fundraising()
+    {
+        //
+    }
+
     /**
      * Store a newly created resource in storage.
      */

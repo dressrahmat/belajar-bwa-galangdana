@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -31,5 +32,35 @@ class Fundraising extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Get the fundraiser that owns the Fundraising
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function fundraiser(): BelongsTo
+    {
+        return $this->belongsTo(Fundraiser::class);
+    }
+
+    /**
+     * Get all of the donaturs for the Fundraising
+     *
+     * @return HasMany
+     */
+    public function donaturs(): HasMany
+    {
+        return $this->hasMany(Donatur::class)->where('is_paid', 1);
+    }
+
+    public function totalReachedAmount()
+    {
+        return $this->donaturs()->sum('total_amount');
+    }
+
+    public function withdrawals()
+    {
+        return $this->hasMany(FundraisingWithDrawal::class);
     }
 }

@@ -18,11 +18,11 @@ class Category extends Model
     ];
 
     /**
-     * Get all of the fundraising for the Category
+     * Get all of the fundraisings for the Category
      *
      * @return HasMany
      */
-    public function fundraising(): HasMany
+    public function fundraisings(): HasMany
     {
         return $this->hasMany(Fundraising::class);
     }

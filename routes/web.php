@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DonaturController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FundraiserController;
 use App\Http\Controllers\FundraisingController;
 use App\Http\Controllers\FundraisingPhaseController;
@@ -28,7 +29,7 @@ Route::middleware('auth')->group(function () {
         
         Route::resource('donaturs', DonaturController::class)->middleware('role:owner');
         
-        Route::resource('fundraisers', FundraiserController::class)->middleware('role:owner')->except('index');
+        Route::resource('fundraisers', FundraiserController::class)->middleware('role:owner');
         
         Route::resource('fundraising_withdrawals', FundraisingWithDrawalController::class)->middleware('role:owner|fundraiser');
         

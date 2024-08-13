@@ -11,7 +11,7 @@ class UpdateCategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return $this->user()->hasAnyRole(['owner']);
     }
 
     /**
@@ -23,6 +23,8 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             //
+            'name' => ['required', 'string', 'max:255'],
+            'icon' => ['sometimes', 'image', 'mimes:jpg,jpeg,png'],
         ];
     }
 }

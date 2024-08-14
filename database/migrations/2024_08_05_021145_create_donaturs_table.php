@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('fundraising_id')->on('fundraisings')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('total_amount');
             $table->string('notes');
+            $table->string('phone_number');
             $table->string('proof');
             $table->boolean('is_paid');
             $table->softDeletes();

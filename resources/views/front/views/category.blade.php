@@ -1,4 +1,7 @@
-@extends('front.layouts.index')
+@extends('front.layouts.app')
+@section('title', 'Category')
+
+
 @section('content')
     <section class="max-w-[640px] w-full min-h-screen mx-auto flex flex-col bg-[#FCF7F1] overflow-x-hidden pb-4">
         <div

@@ -15,4 +15,20 @@ class FrontController extends Controller
         $fundraisings = Fundraising::with(['category', 'fundraiser'])->where('is_active', 1)->orderByDesc('id')->get();
         return view('front.views.index', compact('categories', 'fundraisings'));
     }
+
+    public function category(Category $category)
+    {
+        // $categories = Category::all();
+        
+        // $fundraisings = Fundraising::with(['category', 'fundraiser'])->where('is_active', 1)->orderByDesc('id')->get();
+        return view('front.views.category', compact('category'));
+    }
+
+    public function details(Fundraising $fundraising)
+    {
+        // $categories = Category::all();
+        
+        // $fundraisings = Fundraising::with(['category', 'fundraiser'])->where('is_active', 1)->orderByDesc('id')->get();
+        return view('front.views.details', compact('fundraising'));
+    }
 }

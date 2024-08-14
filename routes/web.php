@@ -11,11 +11,12 @@ use App\Http\Controllers\FundraisingController;
 use App\Http\Controllers\FundraisingPhaseController;
 use App\Http\Controllers\FundraisingWithDrawalController;
 
-Route::get('/', [FrontController::class, 'index']);
+Route::get('/', [FrontController::class, 'index'])->name('beranda');
 
 Route::prefix('front')->name('front.')->group(function () {
     // Route::get('/', [FrontController::class, 'index'])->name('index');
-    Route::get('/category', [FrontController::class, 'category'])->name('category');
+    Route::get('/category/{category}', [FrontController::class, 'category'])->name('category');
+    Route::get('/fundraising/{fundraising}', [FrontController::class, 'details'])->name('details');
 
 });
 

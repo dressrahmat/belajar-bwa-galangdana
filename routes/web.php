@@ -29,7 +29,10 @@ Route::middleware('auth')->group(function () {
         
         Route::resource('donaturs', DonaturController::class)->middleware('role:owner');
         
-        Route::resource('fundraisers', FundraiserController::class)->middleware('role:owner');
+        Route::resource('fundraisers', FundraiserController::class)->middleware('role:owner')->except('index');
+
+        Route::get('fundraisers', [FundraiserController::class, 'index'])
+        ->name('fundraisers.index');
         
         Route::resource('fundraising_withdrawals', FundraisingWithDrawalController::class)->middleware('role:owner|fundraiser');
         
@@ -41,7 +44,7 @@ Route::middleware('auth')->group(function () {
         ->middleware('role:owner')->name('fundraising_withdrawals.activate_fundraising');
 
         Route::post('fundraisings/apply', [DashboardController::class, 'apply_fundraiser'])
-        ->name('fundraiser.apply');
+        ->name('fundraisers.apply');
 
         Route::get('/my-withdrawals', [DashboardController::class, 'my_withdrawals'])
         ->name('my-withdrawals');

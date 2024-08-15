@@ -46,9 +46,9 @@
                             <div class="w-6 h-6 flex shrink-0">
                                 <img src="{{ asset('../assets/images/icons/dollar-circle.svg') }}" alt="icon">
                             </div>
-                            <p class="font-semibold">Rp 1.000.000</p>
+                            <p class="font-semibold">Rp {{ number_format($totalAmountDonation, 0, ',', '.') }}</p>
                         </div>
-                        <input type="hidden" id="amount" name="amount" value="1000000">
+                        <input type="hidden" id="amount" name="amount" value="{{ $totalAmountDonation }}">
                     </div>
                     <hr class="border-dashed">
                     <div class="flex flex-col gap-[10px]">
@@ -57,8 +57,8 @@
                             <button type="button" class="accordion-button flex w-full justify-between items-center"
                                 data-accordion="accordion-faq-1">
                                 <div class="flex shrink-0 h-6 overflow-hidden">
-                                    <img src="{{ asset('../assets/images/icons/Bank_Central_Asia.webp') }}"
-                                        class="object-contain" alt="icon">
+                                    <img src="{{ asset('../assets/images/icons/bank_bsi.png') }}" class="object-contain"
+                                        alt="icon">
                                 </div>
                                 <div class="arrow w-5 h-5 flex shrink-0 transition-all duration-300">
                                     <img src="{{ asset('../assets/images/icons/arrow-down.svg') }}" class=""
@@ -74,8 +74,8 @@
                                     </div>
                                     <div class="flex items-center justify-between">
                                         <span class="text-sm text-[#66697A]">Account Number</span>
-                                        <span class="font-semibold text-sm">893092093</span>
-                                        <input type="hidden" id="number" name="phone_number" value="893092093">
+                                        <span class="font-semibold text-sm">9992999249</span>
+                                        <input type="hidden" id="number" name="number" value="9992999249">
                                     </div>
                                     <div class="flex items-center justify-between">
                                         <span class="text-sm text-[#66697A]">Account Name</span>

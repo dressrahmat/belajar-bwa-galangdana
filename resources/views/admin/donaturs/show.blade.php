@@ -33,12 +33,15 @@
                             <h3 class="text-indigo-950 text-xl font-bold">Rp
                                 {{ number_format($donatur->total_amount, 0, ',', '.') }}</h3>
                         </div>
-                        <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-green-500 text-white">
-                            SUCCESS
-                        </span>
-                        <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-orange-500 text-white">
-                            PENDING
-                        </span>
+                        @if ($donatur->is_paid)
+                            <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-green-500 text-white">
+                                SUCCESS
+                            </span>
+                        @else
+                            <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-orange-500 text-white">
+                                PENDING
+                            </span>
+                        @endif
                         <div>
                             <p class="text-slate-500 text-sm">Date</p>
                             <h3 class="text-indigo-950 text-xl font-bold">{{ $donatur->created_at }}</h3>
@@ -58,7 +61,7 @@
                 </div>
                 <hr class="my-5">
                 <h3 class="text-indigo-950 text-xl font-bold mb-5">Proof of Payment</h3>
-                <img src="{{ Storage::url($donatur->proof) }} alt=""
+                <img src="{{ Storage::url($donatur->proof) }}" alt=""
                     class="rounded-2xl object-cover w-[300px] h-[200px] mb-3">
 
                 @if (!$donatur->is_paid)

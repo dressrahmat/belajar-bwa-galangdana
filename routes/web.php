@@ -17,6 +17,9 @@ Route::prefix('front')->name('front.')->group(function () {
     // Route::get('/', [FrontController::class, 'index'])->name('index');
     Route::get('/category/{category}', [FrontController::class, 'category'])->name('category');
     Route::get('/fundraising/{fundraising}', [FrontController::class, 'details'])->name('details');
+    Route::get('/support/{fundraising:slug}', [FrontController::class, 'support'])->name('support');
+    Route::get('/checkout/{fundraising:slug}/{totalAmountDonation}', [FrontController::class, 'checkout'])->name('checkout');
+    Route::post('/checkout/store/{fundraising:slug}/{totalAmountDonation}', [FrontController::class, 'store'])->name('store');
 
 });
 

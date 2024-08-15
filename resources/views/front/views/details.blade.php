@@ -81,13 +81,26 @@
                     <progress id="fund" value="{{ $fundraising->getPercentageAttribute() }}" max="100"
                         class="w-full h-[6px] rounded-full overflow-hidden"></progress>
                 </div>
+
+                @forelse ($fundraising->fundraising_phases as $phase)
+                    <div class="flex flex-col gap-[10px] p-5 rounded-[20px] bg-[#F6ECE2]">
+                        <h2 class="font-semibold text-sm">{{ $phase->name }}</h2>
+                        <div class="aspect-[61/30] rounded-2xl bg-[#D9D9D9] overflow-hidden">
+                            <img src="{{ Storage::url($phase->photo) }}" alt="thumbnail"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <p class="text-sm leading-[26px]">{{ $phase->notes }}</p>
+                    </div>
+                @empty
+                @endforelse
+
                 <div class="flex flex-col gap-[2px]">
                     <h2 class="font-semibold text-sm">About</h2>
                     <p class="desc-less text-sm leading-[26px]">{{ $fundraising->about }}</p>
                 </div>
                 <div class="flex flex-col gap-3">
                     <div class="flex items-center justify-between">
-                        <h2 class="font-semibold text-sm">Supporters (18,309)</h2>
+                        <h2 class="font-semibold text-sm">Supporters ({{ $fundraising->donaturs->count() }})</h2>
                         <a href="" class="p-[6px_12px] rounded-full bg-[#E8E9EE] font-semibold text-sm">View All</a>
                     </div>
                     <div class="flex flex-col gap-4">
@@ -121,8 +134,12 @@
                 </div>
             </div>
         </div>
-        <a href="send-support.html"
-            class="p-[14px_20px] bg-[#76AE43] rounded-full text-white w-fit mx-auto font-semibold hover:shadow-[0_12px_20px_0_#76AE4380] transition-all duration-300 fixed bottom-[30px] transform -translate-x-1/2 left-1/2 z-40 text-nowrap">Send
-            My Support Now</a>
+
+        @if (!$goalReached)
+            <a href="{{ route('front.support', $fundraising->slug) }}"
+                class="p-[14px_20px] bg-[#76AE43] rounded-full text-white w-fit mx-auto font-semibold hover:shadow-[0_12px_20px_0_#76AE4380] transition-all duration-300 fixed bottom-[30px] transform -translate-x-1/2 left-1/2 z-40 text-nowrap">Send
+                My Support Now
+            </a>
+        @endif
     </section>
 @endsection

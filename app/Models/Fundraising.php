@@ -64,6 +64,11 @@ class Fundraising extends Model
         return $this->hasMany(FundraisingWithDrawal::class);
     }
 
+    public function fundraising_phases()
+    {
+        return $this->hasMany(FundraisingPhase::class);
+    }
+
     public function getPercentageAttribute()
     {
         $totalDonations = $this->totalReachedAmount();
